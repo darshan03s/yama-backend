@@ -27,10 +27,14 @@ app.get("/", (req: Request, res: Response) => {
 app.post("/fetch-from-tmdb", async (req: Request, res: Response) => {
     const { url }: { url: string } = req.body;
     const newUrl = url.includes("?") ? `${url}&api_key=${process.env.TMDB_API_KEY}` : `${url}?api_key=${process.env.TMDB_API_KEY}`;
-    console.log(newUrl);
-    const response = await fetch(newUrl);
-    const resJson = await response.json();
-    res.json(resJson);
+    try {
+        const response = await fetch(newUrl);
+        const resJson = await response.json();
+        res.json(resJson);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to fetch data from TMDB" });
+    }
 });
 
 app.listen(PORT, () => {
