@@ -1,6 +1,15 @@
 {
-  "buildCommand": "pnpm build",
-  "outputDirectory": "dist",
-  "startCommand": "node dist/server.js",
-  "nodeVersion": "22.x"
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/dist/server.js"
+    }
+  ]
 }
