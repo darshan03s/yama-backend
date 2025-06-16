@@ -1,9 +1,6 @@
 {
-  "version": 2,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/server.js"
-    }
-  ]
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
+  "startCommand": "node dist/server.js",
+  "nodeVersion": "22.x"
 }
